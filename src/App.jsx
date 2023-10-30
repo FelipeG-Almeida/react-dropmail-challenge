@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getSession } from './services/sessionService';
 import 'bulma/css/bulma.min.css';
 import './App.css';
+import Header from './components/header/Header';
 
 function App() {
 	const [session, setSession] = useState();
@@ -19,11 +20,13 @@ function App() {
 	return (
 		<main>
 			{session ? (
-				<div>Massa</div>
+				<div className='content-grid'>
+					<Header></Header>
+				</div>
 			) : (
-				<div className='boas-vindas__container'>
-					<h1 className='title'>BounceBox</h1>
-					<h2 className='subtitle'>
+				<div className="boas-vindas__container">
+					<h1 className="title">BounceBox</h1>
+					<h2 className="subtitle">
 						Clique no botão abaixo para obter seu e-mail temporário.
 					</h2>
 					<button

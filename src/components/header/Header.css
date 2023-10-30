@@ -1,0 +1,57 @@
+header {
+	width: 100%;
+}
+
+.header__title {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 12px;
+}
+
+.header__container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.email__container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+	max-width: 500px;
+	width: 100%;
+}
+
+.email__address {
+	align-items: center;
+	border: 2px solid #eaeaea;
+	border-radius: 5px;
+	display: flex;
+	font-weight: 700;
+	justify-content: space-between;
+	padding-left: 10px;
+	width: 100%;
+}
+
+.small__container {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 10px;
+}
+
+button {
+	align-items: center;
+	background-color: #fff;
+	border: none;
+	border-left: 2px solid #eaeaea;
+	column-gap: 7px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 15px;
+	width: 100px;
+}
+
+.icon > img {
+	height: 22px;
+	width: 22px;
+}
