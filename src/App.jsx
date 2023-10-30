@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getSession } from './services/sessionService';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.min.css';
 import './App.css';
 import Header from './components/header/Header';
@@ -20,7 +22,7 @@ function App() {
 	return (
 		<main>
 			{session ? (
-				<div className='content-grid'>
+				<div className="content-grid">
 					<Header></Header>
 				</div>
 			) : (
@@ -42,3 +44,4 @@ function App() {
 }
 
 export default App;
+library.add(fas);

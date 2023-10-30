@@ -21,37 +21,53 @@ header {
 	width: 100%;
 }
 
-.email__address {
-	align-items: center;
-	border: 2px solid #eaeaea;
-	border-radius: 5px;
-	display: flex;
-	font-weight: 700;
-	justify-content: space-between;
-	padding-left: 10px;
-	width: 100%;
-}
-
 .small__container {
 	display: flex;
 	justify-content: space-between;
 	padding: 0 10px;
 }
 
-button {
+.email__address {
 	align-items: center;
-	background-color: #fff;
+	display: flex;
+	font-weight: 700;
+	height: 36px;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.address {
+	border: 2px solid #eaeaea;
+	border-right: 0;
+	border-radius: 5px 0 0 5px;
+	flex-grow: 2;
+	padding: 4px 10px;
+}
+
+.email__address > button {
+	align-items: center;
+	background-color: #00d1b2;
 	border: none;
-	border-left: 2px solid #eaeaea;
+	border-radius: 0 5px 5px 0;
 	column-gap: 7px;
 	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
 	padding: 6px 15px;
+	transition: 0.25s all;
 	width: 100px;
 }
 
-.icon > img {
-	height: 22px;
-	width: 22px;
+.email__address > button:hover {
+	background-color: #00947e;
+}
+
+.refresh__container {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.refresh__container > span {
+	width: 250px;
 }

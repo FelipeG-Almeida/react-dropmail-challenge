@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 
 export default function Header() {
 	const [copied, setCopied] = useState(false);
+	const [counter, setCounter] = useState(0);
 	const session = JSON.parse(localStorage.getItem('session'));
 
 	function copyToClipboard() {
@@ -15,6 +17,20 @@ export default function Header() {
 		}, 2000);
 	}
 
+	function refreshEmails() {
+		setCounter(0);
+	}
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCounter((counter) => (counter + 1) % 16);
+		}, 1000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
+
 	return (
 		<header>
 			<h1 className="title header__title">BounceBox</h1>
@@ -25,15 +41,43 @@ export default function Header() {
 						{copied ? <small>E-mail copiado</small> : ''}
 					</div>
 					<div className="email__address">
-						<p>{session.introduceSession.addresses[0].address}</p>
-						<button onClick={copyToClipboard}>
+						<span className="icon-text address">
 							<span className="icon">
-								<img
-									src="https://img.icons8.com/material-outlined/24/copy.png"
-									alt="copy"
+								<FontAwesomeIcon icon="fa-solid fa-envelope" />
+							</span>
+							<span>
+								{session.introduceSession.addresses[0].address}
+							</span>
+						</span>
+						<button onClick={copyToClipboard}>
+							<span className="icon-text has-text-white">
+								<span className="icon">
+									<FontAwesomeIcon icon="fa-solid fa-copy" />
+								</span>
+								<span>Copiar</span>
+							</span>
+						</button>
+					</div>
+					<div className="refresh__container">
+						<span className="icon-text">
+							<span>Atualizando em {counter} segundos</span>
+							<span className="icon">
+								<FontAwesomeIcon
+									icon="fa-solid fa-circle-notch"
+									spin
 								/>
 							</span>
-							<span>Copiar</span>
+						</span>
+						<button
+							onClick={refreshEmails}
+							className="button is-primary is-inverted"
+						>
+							<span className="icon-text">
+								<span>Atualizar</span>
+								<span className="icon">
+									<FontAwesomeIcon icon="fa-solid fa-rotate-right" />
+								</span>
+							</span>
 						</button>
 					</div>
 				</div>
