@@ -5,6 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.min.css';
 import './App.css';
 import Header from './components/header/Header';
+import Inbox from './components/inbox/Inbox';
 
 function App() {
 	const [session, setSession] = useState();
@@ -24,6 +25,10 @@ function App() {
 			{session ? (
 				<div className="content-grid">
 					<Header></Header>
+					<Inbox></Inbox>
+					<div>
+						<p>Teste</p>
+					</div>
 				</div>
 			) : (
 				<div className="boas-vindas__container">
