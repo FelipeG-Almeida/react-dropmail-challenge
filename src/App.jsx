@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { getSession } from './services/sessionService';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -6,23 +6,18 @@ import 'bulma/css/bulma.min.css';
 import './App.css';
 import Header from './components/header/Header';
 import Inbox from './components/inbox/Inbox';
+import { GlobalContext } from './global/globalContext';
 
 function App() {
-	const [session, setSession] = useState();
-
-	useEffect(() => {
-		if (localStorage.getItem('session')) {
-			setSession(getSession());
-		}
-	}, []);
+	const { states, setters } = useContext(GlobalContext);
 
 	function createEmail() {
-		setSession(getSession());
+		setters.setSession(getSession());
 	}
 
 	return (
 		<main>
-			{session ? (
+			{states.session ? (
 				<div className="content-grid">
 					<Header></Header>
 					<Inbox></Inbox>

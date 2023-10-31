@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
+import { getEmails } from '../../services/emailService';
 
 export default function Header() {
 	const [copied, setCopied] = useState(false);
@@ -19,6 +20,7 @@ export default function Header() {
 
 	function refreshEmails() {
 		setCounter(0);
+		getEmails(session.introduceSession.id);
 	}
 
 	useEffect(() => {
@@ -46,7 +48,7 @@ export default function Header() {
 								<FontAwesomeIcon icon="fa-solid fa-envelope" />
 							</span>
 							<span>
-								{session.introduceSession.addresses[0].address}
+								{session?.introduceSession.addresses[0].address}
 							</span>
 						</span>
 						<button onClick={copyToClipboard}>

@@ -7,5 +7,9 @@ main {
 }
 
 main {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	padding: 25px;
 }

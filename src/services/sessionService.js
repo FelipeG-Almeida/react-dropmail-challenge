@@ -1,6 +1,16 @@
 import axios from 'axios';
 import { AUTH_TOKEN } from '../constants/constants';
 
+export function isSessionExpired() {
+	const session = JSON.parse(localStorage.getItem('session'));
+	const dataExpiracao = new Date(session.introduceSession.expiresAt);
+	if (new Date() > dataExpiracao) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 export async function getSession() {
 	if (localStorage.getItem('session')) {
 		return JSON.parse(localStorage.getItem('session'));
