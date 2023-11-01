@@ -1,0 +1,16 @@
+.email__content {
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+	display: flex;
+	height: 100%;
+	padding: 15px 20px;
+}
+
+.noEmail {
+	align-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	width: 100%;
+}

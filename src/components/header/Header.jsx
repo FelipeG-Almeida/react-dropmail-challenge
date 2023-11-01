@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { getEmails } from '../../services/emailService';
+import { GlobalContext } from '../../global/globalContext';
+import { isSessionExpired } from '../../services/sessionService';
 
 export default function Header() {
 	const [copied, setCopied] = useState(false);
 	const [counter, setCounter] = useState(0);
+	const { setters } = useContext(GlobalContext);
 	const session = JSON.parse(localStorage.getItem('session'));
 
 	function copyToClipboard() {
@@ -18,9 +21,21 @@ export default function Header() {
 		}, 2000);
 	}
 
-	function refreshEmails() {
+	async function refreshEmails() {
 		setCounter(0);
-		getEmails(session.introduceSession.id);
+		const emails = await getEmails(session.introduceSession.id);
+		setters.setEmails(emails);
+	}
+
+	async function refreshSession() {
+		if (counter === 15) {
+			if (isSessionExpired()) {
+				localStorage.removeItem('session');
+				setters.setSession();
+			}
+			const emails = await getEmails(session.introduceSession.id);
+			setters.setEmails(emails);
+		}
 	}
 
 	useEffect(() => {
@@ -32,6 +47,10 @@ export default function Header() {
 			clearInterval(interval);
 		};
 	}, []);
+
+	useEffect(() => {
+		refreshSession();
+	}, [counter, session.introduceSession.id, setters]);
 
 	return (
 		<header>

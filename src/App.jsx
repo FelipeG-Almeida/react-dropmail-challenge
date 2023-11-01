@@ -7,6 +7,7 @@ import './App.css';
 import Header from './components/header/Header';
 import Inbox from './components/inbox/Inbox';
 import { GlobalContext } from './global/globalContext';
+import EmailContent from './components/emailContent/EmailContent';
 
 function App() {
 	const { states, setters } = useContext(GlobalContext);
@@ -16,14 +17,16 @@ function App() {
 	}
 
 	return (
-		<main>
+		<main
+			style={{
+				justifyContent: states.session ? 'flex-start' : 'center',
+			}}
+		>
 			{states.session ? (
 				<div className="content-grid">
 					<Header></Header>
 					<Inbox></Inbox>
-					<div>
-						<p>Teste</p>
-					</div>
+					<EmailContent></EmailContent>
 				</div>
 			) : (
 				<div className="boas-vindas__container">

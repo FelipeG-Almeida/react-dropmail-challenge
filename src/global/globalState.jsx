@@ -5,7 +5,8 @@ import { getSession, isSessionExpired } from '../services/sessionService';
 
 export default function GlobalState({ children }) {
 	const [session, setSession] = useState();
-	const [emails, setEmails] = useState();
+	const [emails, setEmails] = useState([]);
+	const [selectedEmail, setSelectedEmail] = useState();
 
 	useEffect(() => {
 		if (localStorage.getItem('session')) {
@@ -18,8 +19,8 @@ export default function GlobalState({ children }) {
 		}
 	}, []);
 
-	const states = { session, emails };
-	const setters = { setSession, setEmails };
+	const states = { session, emails, selectedEmail };
+	const setters = { setSession, setEmails, setSelectedEmail };
 	return (
 		<GlobalContext.Provider value={{ states, setters }}>
 			{children}
