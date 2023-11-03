@@ -50,7 +50,7 @@ export default function Header() {
 
 	useEffect(() => {
 		refreshSession();
-	}, [counter, session.introduceSession.id, setters]);
+	}, [counter, setters]);
 
 	return (
 		<header>

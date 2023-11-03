@@ -15,7 +15,12 @@ export default function EmailContent() {
 	return (
 		<section className="email__content">
 			{states.selectedEmail ? (
-				formatText(states.selectedEmail)
+				<div>
+					<h3 className="title is-5">
+						{states.selectedEmail?.title}
+					</h3>
+					<p>{formatText(states.selectedEmail?.text)}</p>
+				</div>
 			) : (
 				<div className="noEmail">
 					<h3 className="title is-1 has-text-grey-light">

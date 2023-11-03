@@ -72,3 +72,18 @@ header {
 .refresh__container > span {
 	width: 250px;
 }
+
+@media screen and (max-width: 767px) {
+	.refresh__container {
+		flex-direction: column;
+		row-gap: 10px;
+	}
+
+	.address {
+		font-size: 0.8rem;
+	}
+
+	.small__container {
+		flex-direction: column;
+	}
+}

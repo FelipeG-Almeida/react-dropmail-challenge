@@ -5,24 +5,28 @@ import './Inbox.css';
 export default function Inbox() {
 	const { states, setters } = useContext(GlobalContext);
 
-	function openEmail(text) {
-		setters.setSelectedEmail(text);
+	function openEmail(title, text) {
+		setters.setSelectedEmail({ title, text });
 	}
 
 	return (
 		<aside className="emails">
 			<h3 className="title is-5 has-text-centered">Caixa de Entrada</h3>
 			<div>
-				{states.emails ? (
+				{states.emails.lenght > 0 ? (
 					states.emails.map((email, index) => {
 						return (
 							<div
 								className="card__container"
 								key={index}
-								onClick={() => openEmail(email.text)}
+								onClick={() =>
+									openEmail(email.headerSubject, email.text)
+								}
 							>
 								<p className="titulo">
-									{email.headerSubject.slice(0, 27) + '...'}
+									{email.headerSubject.lenght() > 25
+										? (email.headerSubject.slice(0, 27) + '...')
+										: email.headerSubject}
 								</p>
 								<p>{email.fromAddr}</p>
 								<small className="has-text-grey">

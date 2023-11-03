@@ -17,3 +17,12 @@
 	row-gap: 30px;
 	width: 100%;
 }
+
+@media screen and (max-width: 767px) {
+	.content-grid {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		row-gap: 15px;
+	}
+}

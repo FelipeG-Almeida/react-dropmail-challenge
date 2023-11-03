@@ -12,3 +12,9 @@ main {
 	flex-direction: column;
 	padding: 25px;
 }
+
+@media screen and (max-width: 767px) {
+	main {
+		box-sizing: border-box;
+	}
+}
