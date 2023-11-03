@@ -5,21 +5,14 @@ import { GlobalContext } from '../../global/globalContext';
 export default function EmailContent() {
 	const { states } = useContext(GlobalContext);
 
-	function formatText(text) {
-		text = text.replace(/\*(.*?)\*/gm, '<strong>$1</strong>');
-		text = text.replace(/\r\n/g, '<br>');
-
-		return <p dangerouslySetInnerHTML={{ __html: text }} />;
-	}
-
 	return (
 		<section className="email__content">
 			{states.selectedEmail ? (
 				<div>
 					<h3 className="title is-5">
-						{states.selectedEmail?.title}
+						{states.selectedEmail?.headerSubject}
 					</h3>
-					<p>{formatText(states.selectedEmail?.text)}</p>
+					<p className="email__text">{states.selectedEmail?.text}</p>
 				</div>
 			) : (
 				<div className="noEmail">

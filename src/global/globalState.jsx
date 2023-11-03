@@ -5,7 +5,7 @@ import { getSession, isSessionExpired } from '../services/sessionService';
 
 export default function GlobalState({ children }) {
 	const [session, setSession] = useState();
-	const [emails, setEmails] = useState([]);
+	const [emails, setEmails] = useState();
 	const [selectedEmail, setSelectedEmail] = useState();
 
 	useEffect(() => {

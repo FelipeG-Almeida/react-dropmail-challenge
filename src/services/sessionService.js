@@ -15,7 +15,9 @@ export async function getSession() {
 	if (localStorage.getItem('session')) {
 		return JSON.parse(localStorage.getItem('session'));
 	}
-	const endpoint = 'https://dropmail.me/api/graphql/' + AUTH_TOKEN;
+	const endpoint =
+		'https://corsproxy.io/?' +
+		encodeURIComponent('https://dropmail.me/api/graphql/' + AUTH_TOKEN);
 	const query = gql`
 		mutation {
 			introduceSession {
@@ -28,6 +30,6 @@ export async function getSession() {
 		}
 	`;
 	const session = await request(endpoint, query);
-	localStorage.setItem('session', JSON.stringify(session.data.data));
-	return session.data.data;
+	localStorage.setItem('session', JSON.stringify(session));
+	return session;
 }

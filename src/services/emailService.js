@@ -3,10 +3,12 @@ import { request, gql } from 'graphql-request';
 
 export async function getEmails(sessionId) {
 	try {
-		const endpoint = 'https://dropmail.me/api/graphql/' + AUTH_TOKEN;
+		const endpoint =
+			'https://corsproxy.io/?' +
+			encodeURIComponent('https://dropmail.me/api/graphql/' + AUTH_TOKEN);
 		const query = gql`
 		query {
-			session(id: ${sessionId}) {
+			session(id: "${sessionId}") {
 				mails{
 					rawSize,
 					fromAddr,
@@ -19,7 +21,7 @@ export async function getEmails(sessionId) {
 		}
 		`;
 		const response = await request(endpoint, query);
-		return response.data.data.session.mails;
+		return response.session.mails;
 	} catch (error) {
 		console.log(error);
 	}
