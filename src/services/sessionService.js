@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { AUTH_TOKEN } from '../constants/constants';
+import { request, gql } from 'graphql-request';
 
 export function isSessionExpired() {
 	const session = JSON.parse(localStorage.getItem('session'));
@@ -15,12 +15,19 @@ export async function getSession() {
 	if (localStorage.getItem('session')) {
 		return JSON.parse(localStorage.getItem('session'));
 	}
-	const url =
-		'https://corsproxy.io/?' +
-		encodeURIComponent(
-			`https://dropmail.me/api/graphql/${AUTH_TOKEN}?query=mutation%20%7BintroduceSession%20%7Bid%2C%20expiresAt%2C%20addresses%20%7Baddress%7D%7D%7D`
-		);
-	const session = await axios.get(url);
+	const endpoint = 'https://dropmail.me/api/graphql/' + AUTH_TOKEN;
+	const query = gql`
+		mutation {
+			introduceSession {
+				id
+				expiresAt
+				addresses {
+					address
+				}
+			}
+		}
+	`;
+	const session = await request(endpoint, query);
 	localStorage.setItem('session', JSON.stringify(session.data.data));
 	return session.data.data;
 }
